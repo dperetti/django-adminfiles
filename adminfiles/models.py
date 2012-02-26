@@ -51,9 +51,12 @@ class FileUpload(models.Model):
         try:
             return self._dimensions_cache
         except AttributeError:
-            if self.is_image():
-                self._dimensions_cache = get_image_dimensions(self.upload.path)
-            else:
+            try:
+                if self.is_image():
+                    self._dimensions_cache = get_image_dimensions(self.upload.path)
+                else:
+                    self._dimensions_cache = (None, None)
+            except:
                 self._dimensions_cache = (None, None)
         return self._dimensions_cache
     
