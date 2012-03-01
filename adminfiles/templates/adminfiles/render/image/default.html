@@ -1,7 +1,6 @@
 {% load thumbnail %}
-{% spaceless %}
 {% thumbnail upload.upload  "512x512" as im %}
-<img src="{{ im.url }}" class="{{ options.class }}" width="{{ im.width }}" height="{{ im.height }}" alt="{% if options.alt %}{{ options.alt }}{% else %}{{ upload.title }}{% endif %}" />
+<img src="{{ im.url }}" class="{{ options.class }}" width="{{ im.width }}" height="{{ im.height }}"{% if options.alt %} alt="{{ options.alt }}"{% endif %}{% if upload.title %} title="{{ upload.title }}"{% endif %} />
 {% endthumbnail %}
-{% endspaceless %}
+
 
